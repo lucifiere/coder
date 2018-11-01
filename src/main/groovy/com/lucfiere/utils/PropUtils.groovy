@@ -13,7 +13,7 @@ final class PropUtils {
 
     private static Properties DB_PROP
 
-    public static Properties read(String file) {
+    static Properties read(String file) {
         def prop = new Properties()
         LOG.debug("""read config from ${file}""")
         DB_PROP = new Properties()
@@ -21,7 +21,7 @@ final class PropUtils {
         prop
     }
 
-    public static Properties readDBProp(boolean refresh) {
+    static Properties readDBProp(boolean refresh) {
         (refresh || DB_PROP == null) ? read(Path.DB_CONFIG) : DB_PROP
     }
 
