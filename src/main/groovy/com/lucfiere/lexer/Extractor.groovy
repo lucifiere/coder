@@ -22,7 +22,7 @@ class Extractor {
 
     static FieldType extractFiledType(String text) {
         String type = text.find(~/.*(?=\()/)
-        StringUtils.isEmpty(type) ? FieldType.findByLiteral(text) : FieldType.findByLiteral(type)
+        StringUtils.isEmpty(type) ? null : FieldType.findByLiteral(type)
     }
 
     static Integer extractFiledLength(String text) {

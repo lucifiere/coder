@@ -1,8 +1,10 @@
 package com.lucfiere.db
 
+import com.lucfiere.common.FieldType
+
 class Field {
 
-    private String fieldType
+    private FieldType fieldType
 
     private String name
 
@@ -10,11 +12,11 @@ class Field {
 
     private String comment
 
-    String getFieldType() {
+    FieldType getFieldType() {
         return fieldType
     }
 
-    void setFieldType(String fieldType) {
+    void setFieldType(FieldType fieldType) {
         this.fieldType = fieldType
     }
 
