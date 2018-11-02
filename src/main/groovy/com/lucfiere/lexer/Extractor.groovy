@@ -13,7 +13,7 @@ class Extractor {
     }
 
     static String extractComment(String text) {
-        text.find(~/(?<=\').*(?=\')/)
+        text.find(~/(?<=\').*(?=\')/) ?: ""
     }
 
     static boolean isFiled(String value) {
