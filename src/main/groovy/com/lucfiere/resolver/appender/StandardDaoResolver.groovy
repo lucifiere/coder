@@ -42,27 +42,27 @@ public class ${capitalFirst(entity)}DaoImpl implements ${capitalFirst(entity)}Da
 
     private static String generateMethod(String entity) {
         """
-    List<${capitalFirst(entity)}> select${capitalFirst(entity)}ListByExample(${capitalFirst(entity)} ${entity}Example) {
+    public List<${capitalFirst(entity)}> select${capitalFirst(entity)}ListByExample(${capitalFirst(entity)} ${entity}Example) {
         return ${entity}Mapper.select${capitalFirst(entity)}ListByExample(${entity}Example);
     }
 
-    List<${capitalFirst(entity)}> select${capitalFirst(entity)}ListByParam(${capitalFirst(entity)} ${entity}) {
+    public List<${capitalFirst(entity)}> select${capitalFirst(entity)}ListByParam(${capitalFirst(entity)} ${entity}) {
         return ${entity}Mapper.select${capitalFirst(entity)}ListByParam(${entity})
     }
 
-    ${capitalFirst(entity)} select${capitalFirst(entity)}ListById(Long id) {
+    public ${capitalFirst(entity)} select${capitalFirst(entity)}ListById(Long id) {
         return ${entity}Mapper.select${capitalFirst(entity)}ListById(id);
     }
 
-    Long insert${capitalFirst(entity)}(${capitalFirst(entity)} ${entity}) {
+    public Long insert${capitalFirst(entity)}(${capitalFirst(entity)} ${entity}) {
         return ${entity}Mapper.insert${capitalFirst(entity)}(${entity});
     }
 
-    Long update${capitalFirst(entity)}(${capitalFirst(entity)} ${entity}) {
+    public Long update${capitalFirst(entity)}(${capitalFirst(entity)} ${entity}) {
         return ${entity}Mapper.update${capitalFirst(entity)}(${entity});
     }
 
-    void delete${capitalFirst(entity)}ById(Long id) {
+    public void delete${capitalFirst(entity)}ById(Long id) {
         ${entity}Mapper.delete${capitalFirst(entity)}ById(id);
     }
         """
