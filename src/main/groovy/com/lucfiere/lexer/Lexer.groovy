@@ -29,11 +29,9 @@ abstract class Lexer {
     protected void parseToken() {
         if (StringUtils.isNotEmpty(text)) {
             List<String> lines = text.tokenize(LINE_SPLITTER)
-            if (CollectionUtils.isNotEmpty(lines)) {
-                lines.each {
-                    if (StringUtils.isNotEmpty(it)) {
-                        tokens << it.tokenize(TOKEN_SPLITTER)
-                    }
+            lines.each {
+                if (StringUtils.isNotEmpty(it)) {
+                    tokens << Extractor.cleanToken(it.tokenize(TOKEN_SPLITTER))
                 }
             }
         }
@@ -41,7 +39,7 @@ abstract class Lexer {
 
     protected void parseStatement() {
         if (CollectionUtils.isEmpty(tokens)) {
-            throw new RuntimeException("analysis ddl text failed!")
+            throw new RuntimeException("analysis resolver text failed!")
         }
         Statement statement = new Statement()
         for (int i = 0; i < tokens.size(); i++) {

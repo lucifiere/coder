@@ -8,8 +8,6 @@ class Extractor {
 
     public static String FILED_IDENTITY = "`"
 
-    public static String COMMENT_IDENTITY = "'"
-
     static String extractFiled(String value) {
         isFiled(value) ? value.substring(1, value.length() - 1) : ""
     }
@@ -22,24 +20,14 @@ class Extractor {
         StringUtils.isNotEmpty(value) && value.startsWith(FILED_IDENTITY) && value.endsWith(FILED_IDENTITY)
     }
 
-    static boolean isComment(String value) {
-        StringUtils.isNotEmpty(value) && value.startsWith(COMMENT_IDENTITY) && value.endsWith(COMMENT_IDENTITY)
-    }
-
     static FieldType extractFiledType(String text) {
         String type = text.find(~/.*(?=\()/)
-        if (StringUtils.isEmpty(type)) {
-            return null
-        }
-        FieldType.findByLiteral(type)
+        StringUtils.isEmpty(type) ? null : FieldType.findByLiteral(type)
     }
 
     static Integer extractFiledLength(String text) {
         String length = text.find(~/(?<=\().*(?=\))/)
-        if (StringUtils.isEmpty(length)) {
-            return null
-        }
-        Integer.valueOf(length)
+        StringUtils.isEmpty(length) ? null : Integer.valueOf(length)
     }
 
     static String extractFiledComment(Statement statement) {
@@ -48,6 +36,10 @@ class Extractor {
             return extractComment(statement.line.get(keywordIndex))
         }
         null
+    }
+
+    static List<String> cleanToken(List<String> tokens) {
+        tokens
     }
 
 }
