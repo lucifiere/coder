@@ -5,8 +5,8 @@ import com.lucfiere.ddl.Field
 import com.lucfiere.ddl.Table
 import org.apache.commons.collections4.CollectionUtils
 
-import static com.lucfiere.CommonUtils.capitalFirst
-import static com.lucfiere.CommonUtils.toCamel
+import static com.lucfiere.utils.CommonUtils.capitalFirst
+import static com.lucfiere.utils.CommonUtils.toCamel
 
 class StandardPojoResolver extends BasePojoResolver implements Appender {
 
@@ -51,7 +51,7 @@ class ${capitalFirst(toCamel(table.name))} {
     private static String generateGetterAndSetter(Field field) {
         """
     public ${field.fieldType.javaType.simpleName} get${capitalFirst(field.javaName)}(){
-        return ${field.sqlName};
+        return ${field.javaName};
     }
     
     public void set${capitalFirst(field.javaName)}(${field.fieldType.javaType.simpleName} ${field.javaName})

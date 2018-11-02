@@ -1,4 +1,4 @@
-package com.lucfiere
+package com.lucfiere.utils
 
 import org.apache.commons.lang3.StringUtils
 

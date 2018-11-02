@@ -1,6 +1,6 @@
 package com.lucfiere.ddl
 
-import com.lucfiere.CommonUtils
+import com.lucfiere.utils.CommonUtils
 import com.lucfiere.common.FieldType
 
 class Field {
