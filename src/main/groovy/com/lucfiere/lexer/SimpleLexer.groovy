@@ -23,7 +23,7 @@ class SimpleLexer extends Lexer {
         if (statement.prev == null && isFiled(statement.cur)) {
             Field field = new Field()
             field.setName(extractFiled(statement.cur))
-            field.setFieldType(extractFiledType(statement.next))
+            field.setFieldType(extractFiledType(statement.next).getJavaType().getName())
             field.setLength(extractFiledLength(statement.next))
             field.setComment(extractFiledComment(statement))
             table.addField(field)
