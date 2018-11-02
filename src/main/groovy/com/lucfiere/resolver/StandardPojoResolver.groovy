@@ -50,11 +50,11 @@ class ${capitalFirst(toCamel(table.name))} {
 
     private static String generateGetterAndSetter(Field field) {
         """
-    public ${field.fieldType.javaType.simpleName} get${capitalFirst(field.javaName)}(){
+    public ${field.fieldType.javaType.simpleName} get${capitalFirst(field.javaName)}() {
         return ${field.javaName};
     }
     
-    public void set${capitalFirst(field.javaName)}(${field.fieldType.javaType.simpleName} ${field.javaName})
+    public void set${capitalFirst(field.javaName)}(${field.fieldType.javaType.simpleName} ${field.javaName}) {
         this.${field.javaName} = ${field.javaName};
     }
         """
