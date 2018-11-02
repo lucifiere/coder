@@ -1,6 +1,6 @@
 package com.lucfiere.lexer
 
-import com.lucfiere.db.Table
+import com.lucfiere.ddl.Table
 import org.apache.commons.collections4.CollectionUtils
 import org.apache.commons.lang3.StringUtils
 

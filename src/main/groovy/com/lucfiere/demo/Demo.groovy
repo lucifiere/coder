@@ -1,9 +1,11 @@
 package com.lucfiere.demo
 
 import com.alibaba.fastjson.JSON
-import com.lucfiere.db.Table
+import com.lucfiere.ddl.Table
 import com.lucfiere.lexer.Lexer
 import com.lucfiere.lexer.SimpleLexer
+import com.lucfiere.resolver.Appender
+import com.lucfiere.resolver.StandardPojoResolver
 
 class Demo {
 
@@ -72,7 +74,10 @@ SET FOREIGN_KEY_CHECKS = 1;
         Table table = new Table()
         Lexer s = new SimpleLexer(ddl, table)
         s.parse()
+        Appender appender = new StandardPojoResolver(table)
+        String result = appender.autoAppend().result()
         System.out.println(JSON.toJSONString(table))
+        System.out.println(result)
     }
 
 }

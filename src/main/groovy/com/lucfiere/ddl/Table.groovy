@@ -1,4 +1,4 @@
-package com.lucfiere.db
+package com.lucfiere.ddl
 
 class Table {
 

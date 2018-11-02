@@ -1,17 +1,11 @@
 package com.lucfiere.resolver
 
-import com.lucfiere.db.Table
-import com.lucfiere.template.PlaceHolder
-import com.lucfiere.template.Template
+import com.lucfiere.ddl.Table
 
 interface Resolver {
 
-    Resolver resolve(Map<String, Object> data)
+    Table table()
 
-    Table getTable()
-
-    Template getTemplate()
-
-    Resolver render(List<PlaceHolder> placeHolders)
+    String result()
 
 }

@@ -1,12 +1,15 @@
-package com.lucfiere.db
+package com.lucfiere.ddl
 
+import com.lucfiere.CommonUtils
 import com.lucfiere.common.FieldType
 
 class Field {
 
     private FieldType fieldType
 
-    private String name
+    private String sqlName
+
+    private String javaName
 
     private Integer length
 
@@ -20,12 +23,25 @@ class Field {
         this.fieldType = fieldType
     }
 
-    String getName() {
-        return name
+    void setName(String name) {
+        this.sqlName = name
+        this.javaName = CommonUtils.toCamel(name)
     }
 
-    void setName(String name) {
-        this.name = name
+    String getSqlName() {
+        return sqlName
+    }
+
+    void setSqlName(String sqlName) {
+        this.sqlName = sqlName
+    }
+
+    String getJavaName() {
+        return javaName
+    }
+
+    void setJavaName(String javaName) {
+        this.javaName = javaName
     }
 
     Integer getLength() {
@@ -43,5 +59,4 @@ class Field {
     void setComment(String comment) {
         this.comment = comment
     }
-
 }

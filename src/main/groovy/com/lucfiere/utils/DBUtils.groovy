@@ -2,7 +2,7 @@ package com.lucfiere.utils
 
 /**
  * Created by XD.Wang on 2018/2/7.
- * Func: tools for db
+ * Func: tools for ddl
  */
 final class DBUtils {
 

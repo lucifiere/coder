@@ -21,8 +21,8 @@ class Extractor {
     }
 
     static FieldType extractFiledType(String text) {
-        String type = text.find(~/.*(?=\()/)
-        StringUtils.isEmpty(type) ? null : FieldType.findByLiteral(type)
+        String type = text.find(~/.*(?=\()/) ?: text
+        FieldType.findByLiteral(type)
     }
 
     static Integer extractFiledLength(String text) {

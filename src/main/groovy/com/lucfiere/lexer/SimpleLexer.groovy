@@ -1,7 +1,7 @@
 package com.lucfiere.lexer
 
-import com.lucfiere.db.Field
-import com.lucfiere.db.Table
+import com.lucfiere.ddl.Field
+import com.lucfiere.ddl.Table
 
 import static com.lucfiere.lexer.Extractor.*
 

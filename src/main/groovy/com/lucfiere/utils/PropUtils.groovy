@@ -1,6 +1,6 @@
 package com.lucfiere.utils
 
-import com.lucfiere.common.Path
+import com.lucfiere.common.Cons
 import org.slf4j.LoggerFactory
 
 /**
@@ -22,7 +22,7 @@ final class PropUtils {
     }
 
     static Properties readDBProp(boolean refresh) {
-        (refresh || DB_PROP == null) ? read(Path.DB_CONFIG) : DB_PROP
+        (refresh || DB_PROP == null) ? read(Cons.DB_CONFIG) : DB_PROP
     }
 
 }
