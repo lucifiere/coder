@@ -2,6 +2,7 @@ package com.lucfiere.lexer
 
 import com.lucfiere.ddl.Field
 import com.lucfiere.ddl.Table
+import org.apache.commons.collections4.CollectionUtils
 
 import static com.lucfiere.lexer.Extractor.*
 
@@ -37,7 +38,8 @@ class SimpleLexer extends Lexer {
 
     @Override
     protected void parseTableAttr(Statement statement) {
-
+        if (CollectionUtils.isNotEmpty(statement.line)) {
+        }
     }
 
 }

@@ -1,5 +1,6 @@
-package com.lucfiere.resolver
+package com.lucfiere.resolver.render
 
+import com.lucfiere.resolver.Resolver
 import com.lucfiere.template.Template
 
 interface Render extends Resolver  {

@@ -1,14 +1,16 @@
-package com.lucfiere.resolver
+package com.lucfiere.resolver.appender
 
 import com.lucfiere.common.Cons
 import com.lucfiere.ddl.Field
 import com.lucfiere.ddl.Table
+import com.lucfiere.resolver.BaseResolver
+import com.lucfiere.resolver.Resolver
 import org.apache.commons.collections4.CollectionUtils
 
 import static com.lucfiere.utils.CommonUtils.capitalFirst
 import static com.lucfiere.utils.CommonUtils.toCamel
 
-class StandardPojoResolver extends BasePojoResolver implements Appender {
+class StandardPojoResolver extends BaseResolver implements Appender {
 
     StandardPojoResolver(Table table) {
         super(table)

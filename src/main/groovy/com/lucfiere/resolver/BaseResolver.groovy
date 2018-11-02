@@ -2,13 +2,13 @@ package com.lucfiere.resolver
 
 import com.lucfiere.ddl.Table
 
-abstract class BasePojoResolver {
+abstract class BaseResolver {
 
     protected Table table
 
     protected String result
 
-    BasePojoResolver(Table table) {
+    BaseResolver(Table table) {
         this.table = table
     }
 
