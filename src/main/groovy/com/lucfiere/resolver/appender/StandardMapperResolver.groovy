@@ -3,12 +3,13 @@ package com.lucfiere.resolver.appender
 import com.lucfiere.common.Cons
 import com.lucfiere.resolver.BaseResolver
 import com.lucfiere.resolver.Resolver
+import com.lucfiere.resolver.type.MapperResolver
 import org.apache.commons.lang3.StringUtils
 
 import static com.lucfiere.utils.CommonUtils.capitalFirst
 import static com.lucfiere.utils.CommonUtils.toCamel
 
-class StandardMapperResolver extends BaseResolver implements Appender {
+class StandardMapperResolver extends BaseResolver implements Appender,MapperResolver {
 
     @Override
     Resolver autoAppend() {

@@ -1,5 +1,6 @@
 package com.lucfiere.bootstrap
 
+import com.alibaba.fastjson.JSON
 import com.lucfiere.ddl.Table
 import com.lucfiere.file.DefaultFileHelper
 import com.lucfiere.file.FileHelper
@@ -22,8 +23,7 @@ class Bootstrap {
 
     private Lexer lexer
 
-    Bootstrap(String ddlPath) {
-        this.ddlPath = ddlPath
+    Bootstrap() {
         this.fileHelper = new DefaultFileHelper()
         this.lexer = new SimpleLexer()
         this.resolvers = new ResolverBundle()
@@ -55,7 +55,7 @@ class Bootstrap {
     }
 
     void execute(ResolveContext context) {
-        paramCheck(context)
+        contextCheck(context)
         String ddlPath = context.getDdlPath()
         String ddlText = fileHelper.loadDdlFile(ddlPath)
         if (StringUtils.isEmpty(ddlText)) {
@@ -64,13 +64,18 @@ class Bootstrap {
         Table table = new Table()
         lexer.parse(ddlText, table)
         SourceCodeBundle sourceCodes = new SourceCodeBundle()
+        context.setTable(table)
         resolvers.resolve(sourceCodes, context)
         fileHelper.exportSourceCodeFile(sourceCodes, context.getTargetPath())
+        println(JSON.toJSONString(sourceCodes))
     }
 
-    private static void paramCheck(ResolveContext context) {
+    private static void contextCheck(ResolveContext context) {
         if (StringUtils.isEmpty(context.getDdlPath())) {
             throw new IllegalArgumentException("ddl path in context can not be blank!")
+        }
+        if (StringUtils.isEmpty(context.getTargetPath())) {
+            throw new IllegalArgumentException("output path in context can not be blank!")
         }
     }
 

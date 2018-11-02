@@ -1,10 +1,7 @@
 package com.lucfiere.demo
 
-import com.alibaba.fastjson.JSON
-import com.lucfiere.ddl.Table
-import com.lucfiere.lexer.re.SimpleLexer
-import com.lucfiere.resolver.appender.Appender
-import com.lucfiere.resolver.appender.StandardPojoResolver
+import com.lucfiere.bootstrap.Bootstrap
+import com.lucfiere.resolver.ResolveContext
 
 class Demo {
 
@@ -70,12 +67,10 @@ SET FOREIGN_KEY_CHECKS = 1;
 """
 
     static void main(String[] args) {
-        Table table = new Table()
-        new SimpleLexer(ddl, table).parse()
-        Appender appender = new StandardPojoResolver(table)
-        String result = appender.autoAppend().result()
-        println(JSON.toJSONString(table))
-        println(result)
+        Bootstrap bootstrap = new Bootstrap()
+        ResolveContext context = new ResolveContext.Builder()
+                .setDdlPath("xxx").setTargetPath("xxx").create()
+        bootstrap.execute(context)
     }
 
 }

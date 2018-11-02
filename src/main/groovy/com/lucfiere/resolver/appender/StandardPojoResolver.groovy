@@ -5,12 +5,13 @@ import com.lucfiere.ddl.Field
 import com.lucfiere.ddl.Table
 import com.lucfiere.resolver.BaseResolver
 import com.lucfiere.resolver.Resolver
+import com.lucfiere.resolver.type.PojoResolver
 import org.apache.commons.collections4.CollectionUtils
 
 import static com.lucfiere.utils.CommonUtils.capitalFirst
 import static com.lucfiere.utils.CommonUtils.toCamel
 
-class StandardPojoResolver extends BaseResolver implements Appender {
+class StandardPojoResolver extends BaseResolver implements Appender, PojoResolver {
 
     @Override
     Resolver autoAppend() {

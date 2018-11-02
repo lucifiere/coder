@@ -1,19 +1,15 @@
 package com.lucfiere.resolver.appender
 
 import com.lucfiere.common.Cons
-import com.lucfiere.ddl.Table
 import com.lucfiere.resolver.BaseResolver
 import com.lucfiere.resolver.Resolver
+import com.lucfiere.resolver.type.DaoResolver
 import org.apache.commons.lang3.StringUtils
 
 import static com.lucfiere.utils.CommonUtils.capitalFirst
 import static com.lucfiere.utils.CommonUtils.toCamel
 
-class StandardDaoResolver extends BaseResolver implements Appender {
-
-    StandardDaoResolver(Table table) {
-        super(table)
-    }
+class StandardDaoResolver extends BaseResolver implements Appender, DaoResolver {
 
     @Override
     Resolver autoAppend() {

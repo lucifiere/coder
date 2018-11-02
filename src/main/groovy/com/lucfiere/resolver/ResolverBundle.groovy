@@ -1,9 +1,9 @@
 package com.lucfiere.resolver
 
 import com.lucfiere.file.SourceCodeBundle
-import com.lucfiere.resolver.resolverType.DaoResolver
-import com.lucfiere.resolver.resolverType.MapperResolver
-import com.lucfiere.resolver.resolverType.PojoResolver
+import com.lucfiere.resolver.type.DaoResolver
+import com.lucfiere.resolver.type.MapperResolver
+import com.lucfiere.resolver.type.PojoResolver
 
 class ResolverBundle {
 

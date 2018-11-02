@@ -19,6 +19,7 @@ abstract class ReLexer implements Lexer {
 
     void parse(String text, Table table) {
         this.table = table
+        this.text = text
         parseToken()
         parseStatement()
     }
