@@ -1,16 +1,12 @@
-package com.lucfiere.lexer
+package com.lucfiere.lexer.re
 
 import com.lucfiere.ddl.Field
 import com.lucfiere.ddl.Table
 import org.apache.commons.collections4.CollectionUtils
 
-import static com.lucfiere.lexer.Extractor.*
+import static Extractor.*
 
-class SimpleLexer extends Lexer {
-
-    SimpleLexer(String text, Table table) {
-        super(text, table)
-    }
+class SimpleLexer extends ReLexer {
 
     @Override
     protected void parseTableName(Statement statement) {

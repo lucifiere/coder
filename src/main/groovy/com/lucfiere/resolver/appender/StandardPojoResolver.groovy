@@ -12,21 +12,13 @@ import static com.lucfiere.utils.CommonUtils.toCamel
 
 class StandardPojoResolver extends BaseResolver implements Appender {
 
-    StandardPojoResolver(Table table) {
-        super(table)
-    }
-
     @Override
     Resolver autoAppend() {
         result = ""
         if (CollectionUtils.isNotEmpty(table.fieldList)) {
             result += generateClassHead(table)
-            table.fieldList.each {
-                result += generateAttribute(it)
-            }
-            table.fieldList.each {
-                result += generateGetterAndSetter(it)
-            }
+            result += generateAttribute(table.fieldList)
+            result += generateGetterAndSetter(table.fieldList)
             result += generateClassTail()
         }
         this
@@ -41,25 +33,33 @@ class ${capitalFirst(toCamel(table.name))} {
         """
     }
 
-    private static String generateAttribute(Field field) {
-        """
+    private static String generateAttribute(List<Field> fieldList) {
+        String result = ""
+        fieldList.each {
+            result += """
     /**
-     * ${field.comment}
+     * ${it.comment}
      */ 
-    private ${field.fieldType.javaType.simpleName} ${field.javaName};
-        """
+    private ${it.fieldType.javaType.simpleName} ${it.javaName};
+            """
+        }
+        result
     }
 
-    private static String generateGetterAndSetter(Field field) {
-        """
-    public ${field.fieldType.javaType.simpleName} get${capitalFirst(field.javaName)}() {
-        return ${field.javaName};
+    private static String generateGetterAndSetter(List<Field> fieldList) {
+        String result = ""
+        fieldList.each {
+            result += """
+    public ${it.fieldType.javaType.simpleName} get${capitalFirst(it.javaName)}() {
+        return ${it.javaName};
     }
     
-    public void set${capitalFirst(field.javaName)}(${field.fieldType.javaType.simpleName} ${field.javaName}) {
-        this.${field.javaName} = ${field.javaName};
+    public void set${capitalFirst(it.javaName)}(${it.fieldType.javaType.simpleName} ${it.javaName}) {
+        this.${it.javaName} = ${it.javaName};
     }
-        """
+            """
+        }
+        result
     }
 
     private static String generateClassTail() {

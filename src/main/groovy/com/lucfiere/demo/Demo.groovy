@@ -2,10 +2,8 @@ package com.lucfiere.demo
 
 import com.alibaba.fastjson.JSON
 import com.lucfiere.ddl.Table
-import com.lucfiere.lexer.SimpleLexer
+import com.lucfiere.lexer.re.SimpleLexer
 import com.lucfiere.resolver.appender.Appender
-import com.lucfiere.resolver.appender.StandardDaoResolver
-import com.lucfiere.resolver.appender.StandardMapperResolver
 import com.lucfiere.resolver.appender.StandardPojoResolver
 
 class Demo {
@@ -74,7 +72,7 @@ SET FOREIGN_KEY_CHECKS = 1;
     static void main(String[] args) {
         Table table = new Table()
         new SimpleLexer(ddl, table).parse()
-        Appender appender = new StandardDaoResolver(table)
+        Appender appender = new StandardPojoResolver(table)
         String result = appender.autoAppend().result()
         println(JSON.toJSONString(table))
         println(result)

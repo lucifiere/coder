@@ -1,17 +1,12 @@
 package com.lucfiere.resolver.render
 
 import com.lucfiere.common.TemplateVarType
-import com.lucfiere.ddl.Table
 import com.lucfiere.resolver.BaseResolver
 import com.lucfiere.resolver.Resolver
 import com.lucfiere.template.Template
 import org.apache.commons.collections4.CollectionUtils
 
 class TemplatePojoResolver extends BaseResolver implements Render {
-
-    TemplatePojoResolver(Table table) {
-        super(table)
-    }
 
     @Override
     Resolver render(Map<String, Object> data, Template template) {

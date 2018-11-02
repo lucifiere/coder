@@ -1,4 +1,4 @@
-package com.lucfiere.lexer
+package com.lucfiere.lexer.re
 
 import com.lucfiere.common.Tuple2
 
