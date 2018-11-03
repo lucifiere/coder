@@ -4,6 +4,7 @@ import com.lucfiere.file.SourceCodeBundle
 import com.lucfiere.resolver.type.DaoResolver
 import com.lucfiere.resolver.type.MapperResolver
 import com.lucfiere.resolver.type.PojoResolver
+import static com.lucfiere.utils.CommonUtils.toCamel
 
 class ResolverBundle {
 
@@ -37,6 +38,7 @@ class ResolverBundle {
                 it.resolve(context)
                 bundle.setPojoContent(it.result())
             }
+            bundle.setEntityName(toCamel(it.table().name))
         }
     }
 
