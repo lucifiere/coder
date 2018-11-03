@@ -38,8 +38,8 @@ class ResolverBundle {
                 it.resolve(context)
                 bundle.setPojoContent(it.result())
             }
-            bundle.setEntityName(toCamel(it.table().name))
         }
+        bundle.setEntityName(toCamel(resolvers.get(0).table().name))
     }
 
 

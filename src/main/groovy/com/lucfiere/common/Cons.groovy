@@ -12,6 +12,6 @@ interface Cons {
 
     String outPath = "/Users/kaolafm/Desktop"
 
-    String inputPath = "/Users/kaolafm/IdeaProjects/coder/src/main/resources/example.sql"
+    String inputPath = "/Users/kaolafm/IdeaProjects/coder/src/main/resources/shop.sql"
 
 }
