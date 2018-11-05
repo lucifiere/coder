@@ -68,7 +68,6 @@ class Bootstrap {
         SourceCodeBundle sourceCodes = new SourceCodeBundle()
         resolvers.resolve(sourceCodes, context)
         fileHelper.exportSourceCodeFile(sourceCodes, context.getTargetPath())
-        LOGGER.info(JSON.toJSONString(sourceCodes))
     }
 
     private static void contextCheck(ResolveContext context) {
