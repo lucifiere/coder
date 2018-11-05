@@ -9,7 +9,7 @@ class Demo {
     static void main(String[] args) {
         Bootstrap bootstrap = new Bootstrap()
         ResolveContext context = new ResolveContext.Builder()
-                .setDdlPath(Cons.inputPath).setTargetPath(Cons.outPath).create()
+                .setDdlPath(Cons.INPUT_PATH).setTargetPath(Cons.OUT_PATH).create()
         bootstrap.execute(context)
     }
 

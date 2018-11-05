@@ -15,12 +15,15 @@ class ResolveContext {
 
     private Template template
 
-    ResolveContext(String ddlPath, String targetPath, Table table, Map<String, Object> templateData, Template template) {
+    private boolean debug
+
+    ResolveContext(String ddlPath, String targetPath, Table table, Map<String, Object> templateData, Template template, boolean debug) {
         this.ddlPath = ddlPath
         this.targetPath = targetPath
         this.table = table
         this.templateData = templateData
         this.template = template
+        this.debug = debug
     }
 
     Table getTable() {
@@ -75,6 +78,8 @@ class ResolveContext {
 
         private Template template
 
+        private boolean debug
+
         Builder setDdlPath(String ddlPath) {
             this.ddlPath = ddlPath
             this
@@ -100,8 +105,13 @@ class ResolveContext {
             this
         }
 
+        Builder debug() {
+            this.debug = true
+            this
+        }
+
         ResolveContext create() {
-            return new ResolveContext(ddlPath, targetPath, table, templateData, template)
+            return new ResolveContext(ddlPath, targetPath, table, templateData, template, debug)
         }
     }
 

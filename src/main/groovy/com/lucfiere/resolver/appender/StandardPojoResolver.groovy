@@ -2,36 +2,26 @@ package com.lucfiere.resolver.appender
 
 import com.lucfiere.common.Cons
 import com.lucfiere.ddl.Field
-import com.lucfiere.ddl.Table
-import com.lucfiere.resolver.BaseResolver
-import com.lucfiere.resolver.Resolver
 import com.lucfiere.resolver.type.PojoResolver
-import org.apache.commons.collections4.CollectionUtils
 
 import static com.lucfiere.utils.CommonUtils.capitalFirst
 import static com.lucfiere.utils.CommonUtils.toCamel
 
-class StandardPojoResolver extends BaseResolver implements Appender, PojoResolver {
+class StandardPojoResolver extends BaseAppender implements Appender, PojoResolver {
 
     @Override
-    Resolver autoAppend() {
-        result = ""
-        if (CollectionUtils.isNotEmpty(table.fieldList)) {
-            result += generateClassHead(table)
-            result += generateAttribute(table.fieldList)
-            result += generateGetterAndSetter(table.fieldList)
-            result += generateClassTail()
-        }
-        this
-    }
-
-    private static String generateClassHead(Table table) {
+    protected String headCode() {
         """
 /**
  * @author ${Cons.AUTHOR}
  */ 
 class ${capitalFirst(toCamel(table.name))} {
         """
+    }
+
+    @Override
+    protected String bodyCode() {
+        generateAttribute(table.getFieldList()) + generateGetterAndSetter(table.getFieldList())
     }
 
     private static String generateAttribute(List<Field> fieldList) {
@@ -63,7 +53,8 @@ class ${capitalFirst(toCamel(table.name))} {
         result
     }
 
-    private static String generateClassTail() {
+    @Override
+    protected String tailCode() {
         """
 }
         """

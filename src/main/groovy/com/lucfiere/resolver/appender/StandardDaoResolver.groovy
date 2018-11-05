@@ -1,70 +1,58 @@
 package com.lucfiere.resolver.appender
 
 import com.lucfiere.common.Cons
-import com.lucfiere.resolver.BaseResolver
-import com.lucfiere.resolver.Resolver
 import com.lucfiere.resolver.type.DaoResolver
-import org.apache.commons.lang3.StringUtils
 
 import static com.lucfiere.utils.CommonUtils.capitalFirst
-import static com.lucfiere.utils.CommonUtils.toCamel
 
-class StandardDaoResolver extends BaseResolver implements Appender, DaoResolver {
+class StandardDaoResolver extends BaseAppender implements Appender, DaoResolver {
 
     @Override
-    Resolver autoAppend() {
-        result = ""
-        if (StringUtils.isNoneBlank(table.name)) {
-            String tableName = toCamel(table.name)
-            result += generateClassHead(tableName)
-            result += generateMethod(tableName)
-            result += generateClassTail()
-        }
-        this
-    }
-
-    private static String generateClassHead(String entity) {
+    protected String headCode() {
         """
 /**
  * @author ${Cons.AUTHOR}
  */ 
 @Repository
-public class ${capitalFirst(entity)}DaoImpl implements ${capitalFirst(entity)}Dao {
+public class ${capitalFirst(entityName)}DaoImpl implements ${capitalFirst(entityName)}Dao {
 
     @Autowire
-    private ${capitalFirst(entity)}Mapper ${entity}Mapper;
+    private ${capitalFirst(entityName)}Mapper ${entityName}Mapper;
         """
     }
 
-    private static String generateMethod(String entity) {
+    @Override
+    protected String bodyCode() {
+        String capitalFirstEntity = capitalFirst(entityName)
         """
-    public List<${capitalFirst(entity)}> select${capitalFirst(entity)}ListByExample(${capitalFirst(entity)} ${entity}Example) {
-        return ${entity}Mapper.select${capitalFirst(entity)}ListByExample(${entity}Example);
+    public List<${capitalFirstEntity}> select${capitalFirstEntity}ListByExample(${capitalFirstEntity} ${entityName}Example) {
+        return ${entityName}Mapper.select${capitalFirstEntity}ListByExample(${entityName}Example);
     }
 
-    public List<${capitalFirst(entity)}> select${capitalFirst(entity)}ListByParam(${capitalFirst(entity)} ${entity}) {
-        return ${entity}Mapper.select${capitalFirst(entity)}ListByParam(${entity})
+    public List<${capitalFirstEntity}> select${capitalFirstEntity}ListByParam(${capitalFirstEntity} ${entityName}) {
+        return ${entityName}Mapper.select${capitalFirstEntity}ListByParam(${entityName})
     }
 
-    public ${capitalFirst(entity)} select${capitalFirst(entity)}ListById(Long id) {
-        return ${entity}Mapper.select${capitalFirst(entity)}ListById(id);
+    public ${capitalFirstEntity} select${capitalFirstEntity}ListById(Long id) {
+        return ${entityName}Mapper.select${capitalFirstEntity}ListById(id);
     }
 
-    public Long insert${capitalFirst(entity)}(${capitalFirst(entity)} ${entity}) {
-        return ${entity}Mapper.insert${capitalFirst(entity)}(${entity});
+    public Long insert${capitalFirstEntity}(${capitalFirstEntity} ${entityName}) {
+        return ${entityName}Mapper.insert${capitalFirstEntity}(${entityName});
     }
 
-    public Long update${capitalFirst(entity)}(${capitalFirst(entity)} ${entity}) {
-        return ${entity}Mapper.update${capitalFirst(entity)}(${entity});
+    public Long update${capitalFirstEntity}(${capitalFirstEntity} ${entityName}) {
+        return ${entityName}Mapper.update${capitalFirstEntity}(${entityName});
     }
 
-    public void delete${capitalFirst(entity)}ById(Long id) {
-        ${entity}Mapper.delete${capitalFirst(entity)}ById(id);
+    public void delete${capitalFirstEntity}ById(Long id) {
+        ${entityName}Mapper.delete${capitalFirstEntity}ById(id);
     }
         """
     }
 
-    private static String generateClassTail() {
+    @Override
+    protected String tailCode() {
         """
 }
         """

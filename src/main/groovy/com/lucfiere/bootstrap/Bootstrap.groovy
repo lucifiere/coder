@@ -12,6 +12,8 @@ import com.lucfiere.resolver.ResolveContext
 import com.lucfiere.resolver.Resolver
 import com.lucfiere.resolver.ResolverBundle
 import org.apache.commons.lang3.StringUtils
+import org.slf4j.Logger
+import org.slf4j.LoggerFactory
 
 class Bootstrap {
 
@@ -22,6 +24,8 @@ class Bootstrap {
     private ResolverBundle resolvers
 
     private Lexer lexer
+
+    private static final Logger LOGGER = LoggerFactory.getLogger(Bootstrap.class)
 
     Bootstrap() {
         this.fileHelper = new DefaultFileHelper()
@@ -58,24 +62,18 @@ class Bootstrap {
         contextCheck(context)
         String ddlPath = context.getDdlPath()
         String ddlText = fileHelper.loadDdlFile(ddlPath)
-        if (StringUtils.isEmpty(ddlText)) {
-            throw new RuntimeException("can not load ddl file content!")
-        }
         Table table = new Table()
         lexer.parse(ddlText, table)
-        SourceCodeBundle sourceCodes = new SourceCodeBundle()
         context.setTable(table)
+        SourceCodeBundle sourceCodes = new SourceCodeBundle()
         resolvers.resolve(sourceCodes, context)
         fileHelper.exportSourceCodeFile(sourceCodes, context.getTargetPath())
-        println(JSON.toJSONString(sourceCodes))
+        LOGGER.info(JSON.toJSONString(sourceCodes))
     }
 
     private static void contextCheck(ResolveContext context) {
         if (StringUtils.isEmpty(context.getDdlPath())) {
             throw new IllegalArgumentException("ddl path in context can not be blank!")
-        }
-        if (StringUtils.isEmpty(context.getTargetPath())) {
-            throw new IllegalArgumentException("output path in context can not be blank!")
         }
     }
 

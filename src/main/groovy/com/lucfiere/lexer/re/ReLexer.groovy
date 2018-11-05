@@ -25,12 +25,13 @@ abstract class ReLexer implements Lexer {
     }
 
     protected void parseToken() {
-        if (StringUtils.isNotEmpty(text)) {
-            List<String> lines = text.tokenize(LINE_SPLITTER)
-            lines.each {
-                if (StringUtils.isNotEmpty(it)) {
-                    tokens << Extractor.cleanToken(it.tokenize(TOKEN_SPLITTER))
-                }
+        if (StringUtils.isBlank(text)) {
+            throw new RuntimeException("parse table failed!")
+        }
+        List<String> lines = text.tokenize(LINE_SPLITTER)
+        lines.each {
+            if (StringUtils.isNotEmpty(it)) {
+                tokens << Extractor.cleanToken(it.tokenize(TOKEN_SPLITTER))
             }
         }
     }
