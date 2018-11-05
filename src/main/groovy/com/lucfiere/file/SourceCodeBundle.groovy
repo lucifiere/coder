@@ -10,6 +10,8 @@ class SourceCodeBundle {
 
     private String pojoContent
 
+    private String criteriaContent
+
     String getEntityName() {
         return entityName
     }
@@ -40,5 +42,13 @@ class SourceCodeBundle {
 
     void setPojoContent(String pojoContent) {
         this.pojoContent = pojoContent
+    }
+
+    String getCriteriaContent() {
+        return criteriaContent
+    }
+
+    void setCriteriaContent(String criteriaContent) {
+        this.criteriaContent = criteriaContent
     }
 }

@@ -21,10 +21,10 @@ class ${capitalFirst(toCamel(table.name))} {
 
     @Override
     protected String bodyCode() {
-        generateAttribute(table.getFieldList()) + generateGetterAndSetter(table.getFieldList())
+        attrCode(table.getFieldList()) + getterAndSetterCode(table.getFieldList())
     }
 
-    private static String generateAttribute(List<Field> fieldList) {
+    private static String attrCode(List<Field> fieldList) {
         String result = ""
         fieldList.each {
             result += """
@@ -37,7 +37,7 @@ class ${capitalFirst(toCamel(table.name))} {
         result
     }
 
-    private static String generateGetterAndSetter(List<Field> fieldList) {
+    private static String getterAndSetterCode(List<Field> fieldList) {
         String result = ""
         fieldList.each {
             result += """

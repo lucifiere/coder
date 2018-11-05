@@ -1,6 +1,7 @@
 package com.lucfiere.resolver
 
 import com.lucfiere.file.SourceCodeBundle
+import com.lucfiere.resolver.type.CriteriaResolver
 import com.lucfiere.resolver.type.DaoResolver
 import com.lucfiere.resolver.type.MapperResolver
 import com.lucfiere.resolver.type.PojoResolver
@@ -45,6 +46,11 @@ class ResolverBundle {
             if (it instanceof PojoResolver) {
                 it.resolve(context)
                 bundle.setPojoContent(it.result())
+                LOGGER.info(it.result())
+            }
+            if (it instanceof CriteriaResolver) {
+                it.resolve(context)
+                bundle.setCriteriaContent(it.result())
                 LOGGER.info(it.result())
             }
         }
