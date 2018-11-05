@@ -75,6 +75,7 @@ protected String orderByClause;
     }
     
     protected abstract static class GeneratedCriteria {
+    
         protected List<Criterion> criteria;
 
         protected GeneratedCriteria() {
@@ -196,9 +197,11 @@ protected String orderByClause;
         protected Criteria() {
             super();
         }
+        
     }
 
     public static class Criterion {
+    
         private String condition;
 
         private Object value;

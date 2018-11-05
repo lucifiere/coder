@@ -7,7 +7,8 @@ class DefaultFileHelper implements FileHelper {
     private static Map<String, String> OUTPUT_INFO = [
             "pojoContent"  : "Pojo.java",
             "daoContent"   : "Dao.java",
-            "mapperContent": "Mapper.java"
+            "mapperContent": "Mapper.java",
+            "criteriaContent": "Example.java"
     ]
 
     @Override
