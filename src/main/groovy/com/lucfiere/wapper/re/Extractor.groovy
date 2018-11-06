@@ -1,6 +1,7 @@
-package com.lucfiere.lexer.re
+package com.lucfiere.wapper.re
 
 import com.lucfiere.common.FieldType
+import com.lucfiere.ddl.Statement
 import org.apache.commons.collections4.CollectionUtils
 import org.apache.commons.lang3.StringUtils
 

@@ -30,7 +30,7 @@ class ResolverBundle {
         this.resolvers = ResolverFactory.defaultResolvers()
     }
 
-    void resolve(SourceCodeBundle bundle, ResolveContext context) {
+    void resolve(SourceCodeBundle bundle, BootstrapContext context) {
         bundle.setEntityName(toCamel(context.getTable().name))
         resolvers.each {
             if (it instanceof DaoResolver) {

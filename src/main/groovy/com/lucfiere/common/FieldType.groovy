@@ -33,12 +33,12 @@ enum FieldType {
 
     Class getJavaType() { javaType }
 
-    String getLiteral() { sqlLiteral }
+    String getSqlLiteral() { sqlLiteral }
 
     TemplateVarType getTemplateType() { templateType }
 
     static FieldType findByLiteral(String literal) {
-        values().find { it.getLiteral() == literal } as FieldType
+        values().find { it.getSqlLiteral() == literal } as FieldType
     }
 
 }

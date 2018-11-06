@@ -8,6 +8,6 @@ interface Resolver {
 
     String result()
 
-    void resolve(ResolveContext context)
+    void resolve(BootstrapContext context)
 
 }

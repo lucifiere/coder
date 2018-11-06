@@ -3,11 +3,13 @@ package com.lucfiere.resolver
 import com.lucfiere.ddl.Table
 import com.lucfiere.template.Template
 
-class ResolveContext {
+class BootstrapContext {
 
     private String ddlPath
 
     private String targetPath
+
+    private String ddlContent
 
     private Table table
 
@@ -17,9 +19,10 @@ class ResolveContext {
 
     private boolean debug
 
-    ResolveContext(String ddlPath, String targetPath, Table table, Map<String, Object> templateData, Template template, boolean debug) {
+    BootstrapContext(String ddlPath, String targetPath, String ddlContent, Table table, Map<String, Object> templateData, Template template, boolean debug) {
         this.ddlPath = ddlPath
         this.targetPath = targetPath
+        this.ddlContent = ddlContent
         this.table = table
         this.templateData = templateData
         this.template = template
@@ -62,6 +65,22 @@ class ResolveContext {
         return targetPath
     }
 
+    String getDdlContent() {
+        return ddlContent
+    }
+
+    void setDdlContent(String ddlContent) {
+        this.ddlContent = ddlContent
+    }
+
+    boolean getDebug() {
+        return debug
+    }
+
+    void setDebug(boolean debug) {
+        this.debug = debug
+    }
+
     void setTargetPath(String targetPath) {
         this.targetPath = targetPath
     }
@@ -71,6 +90,8 @@ class ResolveContext {
         private String ddlPath
 
         private String targetPath
+
+        private String ddlContent
 
         private Table table
 
@@ -105,13 +126,18 @@ class ResolveContext {
             this
         }
 
+        Builder setDdlContent(String ddlContent) {
+            this.ddlContent = ddlContent
+            this
+        }
+
         Builder debug() {
             this.debug = true
             this
         }
 
-        ResolveContext create() {
-            return new ResolveContext(ddlPath, targetPath, table, templateData, template, debug)
+        BootstrapContext create() {
+            return new BootstrapContext(ddlPath, targetPath, ddlContent, table, templateData, template, debug)
         }
     }
 

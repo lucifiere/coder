@@ -1,16 +1,15 @@
 package com.lucfiere.bootstrap
 
-import com.alibaba.fastjson.JSON
 import com.lucfiere.ddl.Table
 import com.lucfiere.file.DefaultFileHelper
 import com.lucfiere.file.FileHelper
 import com.lucfiere.file.SourceCodeBundle
-import com.lucfiere.lexer.Lexer
-import com.lucfiere.lexer.re.ReLexer
-import com.lucfiere.lexer.re.SimpleLexer
-import com.lucfiere.resolver.ResolveContext
+import com.lucfiere.resolver.BootstrapContext
 import com.lucfiere.resolver.Resolver
 import com.lucfiere.resolver.ResolverBundle
+import com.lucfiere.wapper.TableWrapper
+import com.lucfiere.wapper.re.ReLexer
+import com.lucfiere.wapper.re.SimpleLexer
 import org.apache.commons.lang3.StringUtils
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
@@ -23,13 +22,13 @@ class Bootstrap {
 
     private ResolverBundle resolvers
 
-    private Lexer lexer
+    private TableWrapper wrapper
 
     private static final Logger LOGGER = LoggerFactory.getLogger(Bootstrap.class)
 
     Bootstrap() {
         this.fileHelper = new DefaultFileHelper()
-        this.lexer = new SimpleLexer()
+        this.wrapper = new SimpleLexer()
         this.resolvers = new ResolverBundle()
     }
 
@@ -53,24 +52,25 @@ class Bootstrap {
         this
     }
 
-    Bootstrap lexer(ReLexer lexer) {
-        this.lexer = lexer
+    Bootstrap wrapper(ReLexer wrapper) {
+        this.wrapper = wrapper
         this
     }
 
-    void execute(ResolveContext context) {
+    void execute(BootstrapContext context) {
         contextCheck(context)
         String ddlPath = context.getDdlPath()
         String ddlText = fileHelper.loadDdlFile(ddlPath)
+        context.setDdlContent(ddlText)
         Table table = new Table()
-        lexer.parse(ddlText, table)
+        wrapper.wrap(table, context)
         context.setTable(table)
         SourceCodeBundle sourceCodes = new SourceCodeBundle()
         resolvers.resolve(sourceCodes, context)
         fileHelper.exportSourceCodeFile(sourceCodes, context.getTargetPath())
     }
 
-    private static void contextCheck(ResolveContext context) {
+    private static void contextCheck(BootstrapContext context) {
         if (StringUtils.isEmpty(context.getDdlPath())) {
             throw new IllegalArgumentException("ddl path in context can not be blank!")
         }

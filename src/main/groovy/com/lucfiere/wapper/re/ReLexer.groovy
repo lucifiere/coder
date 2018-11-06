@@ -1,11 +1,13 @@
-package com.lucfiere.lexer.re
+package com.lucfiere.wapper.re
 
+import com.lucfiere.ddl.Statement
 import com.lucfiere.ddl.Table
-import com.lucfiere.lexer.Lexer
+import com.lucfiere.resolver.BootstrapContext
+import com.lucfiere.wapper.TableWrapper
 import org.apache.commons.collections4.CollectionUtils
 import org.apache.commons.lang3.StringUtils
 
-abstract class ReLexer implements Lexer {
+abstract class ReLexer implements TableWrapper {
 
     protected List<List<String>> tokens = []
 
@@ -17,9 +19,9 @@ abstract class ReLexer implements Lexer {
 
     protected static Table table
 
-    void parse(String text, Table table) {
+    void wrap(Table table, BootstrapContext context) {
         this.table = table
-        this.text = text
+        this.text = context.getDdlContent()
         parseToken()
         parseStatement()
     }

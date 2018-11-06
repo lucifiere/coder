@@ -14,7 +14,7 @@ abstract class BaseResolver {
 
     Table table() { table }
 
-    void resolve(ResolveContext context) {
+    void resolve(BootstrapContext context) {
         assert context.getTable() != null
         this.table = context.getTable()
         if (this instanceof Appender) {

@@ -1,7 +1,7 @@
-package com.lucfiere.lexer.re
+package com.lucfiere.wapper.re
 
 import com.lucfiere.ddl.Field
-import com.lucfiere.ddl.Table
+import com.lucfiere.ddl.Statement
 import org.apache.commons.collections4.CollectionUtils
 
 import static Extractor.*
