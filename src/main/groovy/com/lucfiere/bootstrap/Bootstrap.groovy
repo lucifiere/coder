@@ -7,9 +7,9 @@ import com.lucfiere.file.SourceCodeBundle
 import com.lucfiere.resolver.BootstrapContext
 import com.lucfiere.resolver.Resolver
 import com.lucfiere.resolver.ResolverBundle
-import com.lucfiere.wapper.TableWrapper
-import com.lucfiere.wapper.re.ReLexer
-import com.lucfiere.wapper.re.SimpleLexer
+import com.lucfiere.wrapper.TableWrapper
+import com.lucfiere.wrapper.re.ReLexer
+import com.lucfiere.wrapper.re.SimpleLexer
 import org.apache.commons.lang3.StringUtils
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory

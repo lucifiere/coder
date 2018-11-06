@@ -1,9 +1,9 @@
-package com.lucfiere.wapper.re
+package com.lucfiere.wrapper.re
 
 import com.lucfiere.ddl.Statement
 import com.lucfiere.ddl.Table
 import com.lucfiere.resolver.BootstrapContext
-import com.lucfiere.wapper.TableWrapper
+import com.lucfiere.wrapper.TableWrapper
 import org.apache.commons.collections4.CollectionUtils
 import org.apache.commons.lang3.StringUtils
 

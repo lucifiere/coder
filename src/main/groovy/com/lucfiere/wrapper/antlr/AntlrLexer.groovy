@@ -1,8 +1,8 @@
-package com.lucfiere.wapper.antlr
+package com.lucfiere.wrapper.antlr
 
 import com.lucfiere.ddl.Table
 import com.lucfiere.resolver.BootstrapContext
-import com.lucfiere.wapper.TableWrapper
+import com.lucfiere.wrapper.TableWrapper
 
 class AntlrLexer implements TableWrapper {
 

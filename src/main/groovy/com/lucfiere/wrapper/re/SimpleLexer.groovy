@@ -1,4 +1,4 @@
-package com.lucfiere.wapper.re
+package com.lucfiere.wrapper.re
 
 import com.lucfiere.ddl.Field
 import com.lucfiere.ddl.Statement

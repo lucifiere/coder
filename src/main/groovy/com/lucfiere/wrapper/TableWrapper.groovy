@@ -1,4 +1,4 @@
-package com.lucfiere.wapper
+package com.lucfiere.wrapper
 
 import com.lucfiere.ddl.Table
 import com.lucfiere.resolver.BootstrapContext
