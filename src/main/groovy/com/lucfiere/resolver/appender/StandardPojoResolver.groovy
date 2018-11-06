@@ -24,7 +24,7 @@ class ${capitalFirst(toCamel(table.name))} {
         attrCode(table.getFieldList()) + getterAndSetterCode(table.getFieldList())
     }
 
-    private static String attrCode(List<Field> fieldList) {
+    private attrCode = { List<Field> fieldList ->
         String result = ""
         fieldList.each {
             result += """
@@ -37,7 +37,7 @@ class ${capitalFirst(toCamel(table.name))} {
         result
     }
 
-    private static String getterAndSetterCode(List<Field> fieldList) {
+    private getterAndSetterCode = { List<Field> fieldList ->
         String result = ""
         fieldList.each {
             result += """
