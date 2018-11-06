@@ -10,13 +10,15 @@ abstract class BaseAppender extends BaseResolver implements Appender {
 
     protected String entityName
 
+    protected String tableName
+
     @Override
     Resolver autoAppend() {
-        String tableName = toCamel(table.name)
-        if (StringUtils.isBlank(tableName)) {
+        if (StringUtils.isBlank(table.entityName)) {
             throw new RuntimeException("resolve table failed")
         }
-        this.entityName = tableName
+        this.entityName = table.entityName
+        this.tableName = table.tableName
         result = ""
         result += headCode()
         result += bodyCode()

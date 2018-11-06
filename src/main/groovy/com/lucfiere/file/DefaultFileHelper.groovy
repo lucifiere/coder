@@ -8,7 +8,8 @@ class DefaultFileHelper implements FileHelper {
             "pojoContent"  : "Pojo.java",
             "daoContent"   : "Dao.java",
             "mapperContent": "Mapper.java",
-            "criteriaContent": "Example.java"
+            "criteriaContent": "Example.java",
+            "mapperXmlContent": "Mapper.xml"
     ]
 
     @Override

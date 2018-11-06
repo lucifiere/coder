@@ -3,6 +3,7 @@ package com.lucfiere.resolver
 import com.lucfiere.resolver.appender.StandardCriteriaResolver
 import com.lucfiere.resolver.appender.StandardDaoResolver
 import com.lucfiere.resolver.appender.StandardMapperResolver
+import com.lucfiere.resolver.appender.StandardMapperXMLResolver
 import com.lucfiere.resolver.appender.StandardPojoResolver
 
 class ResolverFactory {
@@ -12,7 +13,8 @@ class ResolverFactory {
                 new StandardPojoResolver(),
                 new StandardDaoResolver(),
                 new StandardMapperResolver(),
-                new StandardCriteriaResolver()
+                new StandardCriteriaResolver(),
+                new StandardMapperXMLResolver()
         ]
     }
 

@@ -14,7 +14,7 @@ class StandardCriteriaResolver extends BaseAppender implements Appender, Criteri
 /**
  * @author ${Cons.AUTHOR}
  */ 
-class ${capitalFirst(toCamel(table.name))}Example {
+class ${capitalFirst(entityName)}Example {
 
 protected String orderByClause;
 

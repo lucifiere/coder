@@ -33,15 +33,15 @@ public class ${capitalFirst(entityName)}DaoImpl implements ${capitalFirst(entity
         return ${entityName}Mapper.select${capitalFirstEntity}ListByParam(${entityName})
     }
 
-    public ${capitalFirstEntity} select${capitalFirstEntity}ListById(Long id) {
-        return ${entityName}Mapper.select${capitalFirstEntity}ListById(id);
+    public ${capitalFirstEntity} select${capitalFirstEntity}ById(Long id) {
+        return ${entityName}Mapper.select${capitalFirstEntity}ById(id);
     }
 
     public Long insert${capitalFirstEntity}(${capitalFirstEntity} ${entityName}) {
         return ${entityName}Mapper.insert${capitalFirstEntity}(${entityName});
     }
 
-    public Long update${capitalFirstEntity}(${capitalFirstEntity} ${entityName}) {
+    public Long update${capitalFirstEntity}ById(${capitalFirstEntity} ${entityName}) {
         return ${entityName}Mapper.update${capitalFirstEntity}(${entityName});
     }
 

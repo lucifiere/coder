@@ -2,6 +2,7 @@ package com.lucfiere.wrapper.re
 
 import com.lucfiere.ddl.Field
 import com.lucfiere.ddl.Statement
+import com.lucfiere.utils.CommonUtils
 import org.apache.commons.collections4.CollectionUtils
 
 import static Extractor.*
@@ -11,7 +12,8 @@ class SimpleLexer extends ReLexer {
     @Override
     protected void parseTableName(Statement statement) {
         if (statement.prev == "create" && statement.cur == "table") {
-            table.setName(extractFiled(statement.next))
+            table.setTableName(extractFiled(statement.next))
+            table.setEntityName(CommonUtils.toCamel(extractFiled(statement.next)))
         }
     }
 

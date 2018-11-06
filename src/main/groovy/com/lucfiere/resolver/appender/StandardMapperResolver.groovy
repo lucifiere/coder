@@ -25,11 +25,11 @@ public interface ${entityName}Mapper {
 
     List<${capitalFirstEntityName}> select${capitalFirstEntityName}ListByParam(${capitalFirstEntityName} ${entityName});
 
-    ${capitalFirstEntityName} select${capitalFirstEntityName}ListById(Long id);
+    ${capitalFirstEntityName} select${capitalFirstEntityName}ById(Long id);
 
     Long insert${capitalFirstEntityName}(${capitalFirstEntityName} ${entityName});
 
-    Long update${capitalFirstEntityName}(${capitalFirstEntityName} ${entityName});
+    Long update${capitalFirstEntityName}ById(${capitalFirstEntityName} ${entityName});
 
     void delete${capitalFirstEntityName}ById(Long id);
         """

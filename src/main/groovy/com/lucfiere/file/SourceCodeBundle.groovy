@@ -12,6 +12,8 @@ class SourceCodeBundle {
 
     private String criteriaContent
 
+    private String mapperXmlContent
+
     String getEntityName() {
         return entityName
     }
@@ -50,5 +52,13 @@ class SourceCodeBundle {
 
     void setCriteriaContent(String criteriaContent) {
         this.criteriaContent = criteriaContent
+    }
+
+    String getMapperXmlContent() {
+        return mapperXmlContent
+    }
+
+    void setMapperXmlContent(String mapperXmlContent) {
+        this.mapperXmlContent = mapperXmlContent
     }
 }

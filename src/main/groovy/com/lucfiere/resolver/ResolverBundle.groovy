@@ -4,6 +4,7 @@ import com.lucfiere.file.SourceCodeBundle
 import com.lucfiere.resolver.type.CriteriaResolver
 import com.lucfiere.resolver.type.DaoResolver
 import com.lucfiere.resolver.type.MapperResolver
+import com.lucfiere.resolver.type.MapperXMLResolver
 import com.lucfiere.resolver.type.PojoResolver
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
@@ -31,7 +32,7 @@ class ResolverBundle {
     }
 
     void resolve(SourceCodeBundle bundle, BootstrapContext context) {
-        bundle.setEntityName(toCamel(context.getTable().name))
+        bundle.setEntityName(context.getTable().entityName)
         resolvers.each {
             if (it instanceof DaoResolver) {
                 it.resolve(context)
@@ -51,6 +52,11 @@ class ResolverBundle {
             if (it instanceof CriteriaResolver) {
                 it.resolve(context)
                 bundle.setCriteriaContent(it.result())
+                LOGGER.info(it.result())
+            }
+            if (it instanceof MapperXMLResolver) {
+                it.resolve(context)
+                bundle.setMapperXmlContent(it.result())
                 LOGGER.info(it.result())
             }
         }

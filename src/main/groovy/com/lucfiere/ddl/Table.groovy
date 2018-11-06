@@ -2,16 +2,26 @@ package com.lucfiere.ddl
 
 class Table {
 
-    private String name
+    private String entityName
+
+    private String tableName
 
     private List<Field> fieldList = []
 
-    String getName() {
-        return name
+    String getEntityName() {
+        return entityName
     }
 
-    void setName(String name) {
-        this.name = name
+    void setEntityName(String entityName) {
+        this.entityName = entityName
+    }
+
+    String getTableName() {
+        return tableName
+    }
+
+    void setTableName(String tableName) {
+        this.tableName = tableName
     }
 
     List<Field> getFieldList() {
@@ -25,5 +35,4 @@ class Table {
     void addField(Field filed) {
         this.fieldList << filed
     }
-
 }

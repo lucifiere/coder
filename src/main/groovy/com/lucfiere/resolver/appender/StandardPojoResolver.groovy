@@ -15,7 +15,7 @@ class StandardPojoResolver extends BaseAppender implements Appender, PojoResolve
 /**
  * @author ${Cons.AUTHOR}
  */ 
-class ${capitalFirst(toCamel(table.name))} {
+class ${capitalFirst(entityName)} {
         """
     }
 
