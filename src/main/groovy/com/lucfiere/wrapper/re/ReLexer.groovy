@@ -20,6 +20,7 @@ abstract class ReLexer implements TableWrapper {
     protected static Table table
 
     void wrap(Table table, BootstrapContext context) {
+        table.setPrefix(context.getTablePrefix())
         this.table = table
         this.text = context.getDdlContent()
         parseToken()

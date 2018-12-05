@@ -17,15 +17,18 @@ class BootstrapContext {
 
     private Template template
 
+    private String tablePrefix
+
     private boolean debug
 
-    BootstrapContext(String ddlPath, String targetPath, String ddlContent, Table table, Map<String, Object> templateData, Template template, boolean debug) {
+    BootstrapContext(String ddlPath, String targetPath, String ddlContent, Table table, Map<String, Object> templateData, Template template, String tablePrefix, boolean debug) {
         this.ddlPath = ddlPath
         this.targetPath = targetPath
         this.ddlContent = ddlContent
         this.table = table
         this.templateData = templateData
         this.template = template
+        this.tablePrefix = tablePrefix
         this.debug = debug
     }
 
@@ -35,6 +38,14 @@ class BootstrapContext {
 
     void setTable(Table table) {
         this.table = table
+    }
+
+    String getTablePrefix() {
+        return tablePrefix
+    }
+
+    void setTablePrefix(String tablePrefix) {
+        this.tablePrefix = tablePrefix
     }
 
     Map<String, Object> getTemplateData() {
@@ -99,6 +110,8 @@ class BootstrapContext {
 
         private Template template
 
+        private String tablePrefix
+
         private boolean debug
 
         Builder setDdlPath(String ddlPath) {
@@ -131,13 +144,18 @@ class BootstrapContext {
             this
         }
 
+        Builder setTablePrefix(String tablePrefix) {
+            this.tablePrefix = tablePrefix
+            this
+        }
+
         Builder debug() {
             this.debug = true
             this
         }
 
         BootstrapContext create() {
-            return new BootstrapContext(ddlPath, targetPath, ddlContent, table, templateData, template, debug)
+            return new BootstrapContext(ddlPath, targetPath, ddlContent, table, templateData, template, tablePrefix, debug)
         }
     }
 

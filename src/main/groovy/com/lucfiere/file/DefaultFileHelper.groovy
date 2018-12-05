@@ -1,5 +1,7 @@
 package com.lucfiere.file
 
+import com.lucfiere.utils.CommonUtils
+
 import java.lang.reflect.Field
 
 class DefaultFileHelper implements FileHelper {
@@ -31,7 +33,7 @@ class DefaultFileHelper implements FileHelper {
     void exportSourceCodeFile(SourceCodeBundle sourceCodeBundle, String targetPath) {
         Map<String, String> content = getOutPutContent(sourceCodeBundle)
         content.each {
-            create(targetPath, sourceCodeBundle.entityName, it.key, it.value)
+            create(targetPath, CommonUtils.capitalFirst(sourceCodeBundle.entityName), it.key, it.value)
         }
     }
 

@@ -26,9 +26,16 @@ class Extractor {
         FieldType.findByLiteral(type)
     }
 
-    static Integer extractFiledLength(String text) {
+    static Integer extractFiledLength(String text, FieldType fieldType) {
         String length = text.find(~/(?<=\().*(?=\))/)
-        StringUtils.isEmpty(length) ? null : Integer.valueOf(length)
+        def decimalType = [FieldType.NUM_DOUBLE, FieldType.NUM_FLOAT, FieldType.NUM_DECIMAL]
+        if (StringUtils.isEmpty(length)) {
+            return null
+        }
+        if (decimalType.contains(fieldType)) {
+            return length.split(",")[0] as Integer
+        }
+        Integer.valueOf(length)
     }
 
     static String extractFiledComment(Statement statement) {

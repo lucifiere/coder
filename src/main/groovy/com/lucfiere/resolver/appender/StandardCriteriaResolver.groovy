@@ -11,19 +11,22 @@ class StandardCriteriaResolver extends BaseAppender implements Appender, Criteri
     @Override
     protected String headCode() {
         """
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * @author ${Cons.AUTHOR}
  */ 
-class ${capitalFirst(entityName)}Example {
+public class ${capitalFirst(entityName)}Example {
 
-protected String orderByClause;
+    protected String orderByClause;
 
     protected boolean distinct;
 
     protected List<Criteria> orCriteria;
 
-    public ActivityRuleDOExample() {
-        orCriteria = new ArrayList<Criteria>();
+    public ${capitalFirst(entityName)}Example() {
+        orCriteria = new ArrayList<>();
     }
 
     public void setOrderByClause(String orderByClause) {

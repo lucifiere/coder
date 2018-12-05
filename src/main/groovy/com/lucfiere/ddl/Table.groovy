@@ -6,6 +6,8 @@ class Table {
 
     private String tableName
 
+    private String prefix
+
     private List<Field> fieldList = []
 
     String getEntityName() {
@@ -34,5 +36,13 @@ class Table {
 
     void addField(Field filed) {
         this.fieldList << filed
+    }
+
+    String getPrefix() {
+        return prefix
+    }
+
+    void setPrefix(String prefix) {
+        this.prefix = prefix
     }
 }

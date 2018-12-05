@@ -15,7 +15,7 @@ class StandardPojoResolver extends BaseAppender implements Appender, PojoResolve
 /**
  * @author ${Cons.AUTHOR}
  */ 
-class ${capitalFirst(entityName)} {
+public class ${capitalFirst(entityName)} {
         """
     }
 

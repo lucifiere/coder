@@ -57,5 +57,5 @@ public class ${capitalFirst(entityName)}DaoImpl implements ${capitalFirst(entity
 }
         """
     }
-
+    
 }

@@ -12,6 +12,6 @@ interface Cons {
 
     String OUT_PATH = "/Users/user/Desktop"
 
-    String INPUT_PATH = "/Users/user/Desktop/coupon_coupon_batch.sql"
+    String INPUT_PATH = "/Users/user/Desktop/untitled.sql"
 
 }
