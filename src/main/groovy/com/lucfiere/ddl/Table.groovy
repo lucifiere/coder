@@ -6,6 +6,8 @@ class Table {
 
     private String tableName
 
+    private String completeTableName
+
     private String prefix
 
     private List<Field> fieldList = []
@@ -44,5 +46,13 @@ class Table {
 
     void setPrefix(String prefix) {
         this.prefix = prefix
+    }
+
+    String getCompleteTableName() {
+        return completeTableName
+    }
+
+    void setCompleteTableName(String completeTableName) {
+        this.completeTableName = completeTableName
     }
 }

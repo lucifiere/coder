@@ -1,11 +1,11 @@
 package com.lucfiere.resolver.appender
 
 import com.lucfiere.common.Cons
-import com.lucfiere.resolver.type.MapperResolver
+import com.lucfiere.resolver.type.ServiceResolver
 
 import static com.lucfiere.utils.CommonUtils.capitalFirst
 
-class StandardMapperResolver extends BaseAppender implements Appender, MapperResolver {
+class StandardServiceResolver extends BaseAppender implements Appender, ServiceResolver {
 
     @Override
     protected String headCode() {
@@ -13,18 +13,18 @@ class StandardMapperResolver extends BaseAppender implements Appender, MapperRes
 import java.util.List;
 
 /**
- * Mapper层
+ * Service层接口
  * 
  * @author ${Cons.AUTHOR}
  * @date ${new Date().format("yyyy-MM-dd")}
  */ 
-public interface ${capitalFirst(entityName)}Mapper {
+public interface ${capitalFirst(entityName)}Service {
         """
     }
 
     @Override
     protected String bodyCode() {
-        String capitalFirstEntityName = capitalFirst(entityName)
+        String capitalFirstEntity = capitalFirst(entityName)
         """
     /**
      * 根据Example查询符合条件的结果列表
@@ -32,7 +32,7 @@ public interface ${capitalFirst(entityName)}Mapper {
      * @param ${entityName}Example 查询条件
      * @return 结果列表
      */
-    List<${capitalFirstEntityName}> select${capitalFirstEntityName}ListByExample(${capitalFirstEntityName} ${entityName}Example);
+    List<${capitalFirstEntity}> select${capitalFirstEntity}ListByExample(${capitalFirstEntity} ${entityName}Example);
 
     /**
      * 根据DO参数查询符合条件的结果列表
@@ -40,15 +40,15 @@ public interface ${capitalFirst(entityName)}Mapper {
      * @param ${entityName} 查询条件
      * @return 结果列表
      */
-    List<${capitalFirstEntityName}> select${capitalFirstEntityName}ListByParam(${capitalFirstEntityName} ${entityName});
+    List<${capitalFirstEntity}> select${capitalFirstEntity}ListByParam(${capitalFirstEntity} ${entityName});
 
     /**
      * 根据ID查询符合条件的结果
      * 
-     * @param id 查询条件
+     * @param id 主键
      * @return 结果
      */
-    ${capitalFirstEntityName} select${capitalFirstEntityName}ById(Long id);
+    ${capitalFirstEntity} select${capitalFirstEntity}ById(Long id);
 
     /**
      * 单条数据新增
@@ -56,7 +56,7 @@ public interface ${capitalFirst(entityName)}Mapper {
      * @param ${entityName} 待入库数据
      * @return 影响行数
      */
-    Long insert${capitalFirstEntityName}(${capitalFirstEntityName} ${entityName});
+    Long insert${capitalFirstEntity}(${capitalFirstEntity} ${entityName});
 
     /**
      * 根据ID对单条数据更新
@@ -64,14 +64,14 @@ public interface ${capitalFirst(entityName)}Mapper {
      * @param ${entityName} 待入库数据
      * @return 影响行数
      */
-    Long update${capitalFirstEntityName}ById(${capitalFirstEntityName} ${entityName});
+    Long update${capitalFirstEntity}ById(${capitalFirstEntity} ${entityName});
 
     /**
      * 根据主键删除
      * 
      * @param id 主键
      */
-    void delete${capitalFirstEntityName}ById(Long id);
+    void delete${capitalFirstEntity}ById(Long id);
         """
     }
 

@@ -14,6 +14,7 @@ class SimpleLexer extends ReLexer {
     protected void parseTableName(Statement statement) {
         if (statement.prev == "create" && statement.cur == "table") {
             String tableName = extractFiled(statement.next)
+            table.setCompleteTableName(tableName)
             if (StringUtils.isNoneBlank(table.getPrefix())) {
                 tableName = tableName.replaceFirst(table.getPrefix(), "")
             }

@@ -4,7 +4,6 @@ import com.lucfiere.common.Cons
 import com.lucfiere.resolver.type.CriteriaResolver
 
 import static com.lucfiere.utils.CommonUtils.capitalFirst
-import static com.lucfiere.utils.CommonUtils.toCamel
 
 class StandardCriteriaResolver extends BaseAppender implements Appender, CriteriaResolver {
 
@@ -15,7 +14,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
+ * Example 查询参数
+ * 
  * @author ${Cons.AUTHOR}
+ * @date ${new Date().format("yyyy-MM-dd")}
  */ 
 public class ${capitalFirst(entityName)}Example {
 

@@ -5,15 +5,19 @@ import com.lucfiere.ddl.Field
 import com.lucfiere.resolver.type.PojoResolver
 
 import static com.lucfiere.utils.CommonUtils.capitalFirst
-import static com.lucfiere.utils.CommonUtils.toCamel
 
 class StandardPojoResolver extends BaseAppender implements Appender, PojoResolver {
 
     @Override
     protected String headCode() {
         """
+import java.util.Date;
+
 /**
+ * DO POJO
+ * 
  * @author ${Cons.AUTHOR}
+ * @date ${new Date().format("yyyy-MM-dd")}
  */ 
 public class ${capitalFirst(entityName)} {
         """

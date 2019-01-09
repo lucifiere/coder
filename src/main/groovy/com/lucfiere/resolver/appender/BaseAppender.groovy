@@ -4,13 +4,13 @@ import com.lucfiere.resolver.BaseResolver
 import com.lucfiere.resolver.Resolver
 import org.apache.commons.lang3.StringUtils
 
-import static com.lucfiere.utils.CommonUtils.toCamel
-
 abstract class BaseAppender extends BaseResolver implements Appender {
 
     protected String entityName
 
     protected String tableName
+
+    protected String completeTableName
 
     @Override
     Resolver autoAppend() {
@@ -19,6 +19,7 @@ abstract class BaseAppender extends BaseResolver implements Appender {
         }
         this.entityName = table.entityName
         this.tableName = table.tableName
+        this.completeTableName = table.completeTableName
         result = ""
         result += headCode()
         result += bodyCode()

@@ -10,14 +10,15 @@ class StandardDaoResolver extends BaseAppender implements Appender, DaoResolver 
     @Override
     protected String headCode() {
         """
-/**
- * @author ${Cons.AUTHOR}
- */ 
-@Repository
-public class ${capitalFirst(entityName)}DaoImpl implements ${capitalFirst(entityName)}Dao {
+import java.util.List;
 
-    @Autowire
-    private ${capitalFirst(entityName)}Mapper ${entityName}Mapper;
+/**
+ * Dao层接口
+ * 
+ * @author ${Cons.AUTHOR}
+ * @date ${new Date().format("yyyy-MM-dd")}
+ */ 
+public interface ${capitalFirst(entityName)}Dao {
         """
     }
 
@@ -25,29 +26,52 @@ public class ${capitalFirst(entityName)}DaoImpl implements ${capitalFirst(entity
     protected String bodyCode() {
         String capitalFirstEntity = capitalFirst(entityName)
         """
-    public List<${capitalFirstEntity}> select${capitalFirstEntity}ListByExample(${capitalFirstEntity} ${entityName}Example) {
-        return ${entityName}Mapper.select${capitalFirstEntity}ListByExample(${entityName}Example);
-    }
+    /**
+     * 根据Example查询符合条件的结果列表
+     * 
+     * @param ${entityName}Example 查询条件
+     * @return 结果列表
+     */
+    List<${capitalFirstEntity}> select${capitalFirstEntity}ListByExample(${capitalFirstEntity} ${entityName}Example);
 
-    public List<${capitalFirstEntity}> select${capitalFirstEntity}ListByParam(${capitalFirstEntity} ${entityName}) {
-        return ${entityName}Mapper.select${capitalFirstEntity}ListByParam(${entityName})
-    }
+    /**
+     * 根据DO参数查询符合条件的结果列表
+     * 
+     * @param ${entityName} 查询条件
+     * @return 结果列表
+     */
+    List<${capitalFirstEntity}> select${capitalFirstEntity}ListByParam(${capitalFirstEntity} ${entityName});
 
-    public ${capitalFirstEntity} select${capitalFirstEntity}ById(Long id) {
-        return ${entityName}Mapper.select${capitalFirstEntity}ById(id);
-    }
+    /**
+     * 根据ID查询符合条件的结果
+     * 
+     * @param id 主键
+     * @return 结果
+     */
+    ${capitalFirstEntity} select${capitalFirstEntity}ById(Long id);
 
-    public Long insert${capitalFirstEntity}(${capitalFirstEntity} ${entityName}) {
-        return ${entityName}Mapper.insert${capitalFirstEntity}(${entityName});
-    }
+    /**
+     * 单条数据新增
+     * 
+     * @param ${entityName} 待入库数据
+     * @return 影响行数
+     */
+    Long insert${capitalFirstEntity}(${capitalFirstEntity} ${entityName});
 
-    public Long update${capitalFirstEntity}ById(${capitalFirstEntity} ${entityName}) {
-        return ${entityName}Mapper.update${capitalFirstEntity}(${entityName});
-    }
+    /**
+     * 根据ID对单条数据更新
+     * 
+     * @param ${entityName} 待入库数据
+     * @return 影响行数
+     */
+    Long update${capitalFirstEntity}ById(${capitalFirstEntity} ${entityName});
 
-    public void delete${capitalFirstEntity}ById(Long id) {
-        ${entityName}Mapper.delete${capitalFirstEntity}ById(id);
-    }
+    /**
+     * 根据主键删除
+     * 
+     * @param id 主键
+     */
+    void delete${capitalFirstEntity}ById(Long id);
         """
     }
 
@@ -57,5 +81,5 @@ public class ${capitalFirst(entityName)}DaoImpl implements ${capitalFirst(entity
 }
         """
     }
-    
+
 }

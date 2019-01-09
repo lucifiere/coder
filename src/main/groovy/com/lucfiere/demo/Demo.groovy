@@ -11,7 +11,7 @@ class Demo {
         BootstrapContext context = new BootstrapContext.Builder()
                 .setDdlPath(Cons.INPUT_PATH)
                 .setTargetPath(Cons.OUT_PATH)
-                .setTablePrefix("coupon_")
+                .setTablePrefix("themis_")
                 .create()
         bootstrap.execute(context)
     }

@@ -1,15 +1,9 @@
 package com.lucfiere.resolver
 
 import com.lucfiere.file.SourceCodeBundle
-import com.lucfiere.resolver.type.CriteriaResolver
-import com.lucfiere.resolver.type.DaoResolver
-import com.lucfiere.resolver.type.MapperResolver
-import com.lucfiere.resolver.type.MapperXMLResolver
-import com.lucfiere.resolver.type.PojoResolver
+import com.lucfiere.resolver.type.*
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
-
-import static com.lucfiere.utils.CommonUtils.toCamel
 
 class ResolverBundle {
 
@@ -54,9 +48,24 @@ class ResolverBundle {
                 bundle.setCriteriaContent(it.result())
                 LOGGER.info(it.result())
             }
+            if (it instanceof DaoImplResolver) {
+                it.resolve(context)
+                bundle.setDaoImplContent(it.result())
+                LOGGER.info(it.result())
+            }
             if (it instanceof MapperXMLResolver) {
                 it.resolve(context)
                 bundle.setMapperXmlContent(it.result())
+                LOGGER.info(it.result())
+            }
+            if (it instanceof ServiceResolver) {
+                it.resolve(context)
+                bundle.setServiceContent(it.result())
+                LOGGER.info(it.result())
+            }
+            if (it instanceof ServiceImplResolver) {
+                it.resolve(context)
+                bundle.setServiceImplContent(it.result())
                 LOGGER.info(it.result())
             }
         }

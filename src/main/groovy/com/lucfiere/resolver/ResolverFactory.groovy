@@ -1,19 +1,18 @@
 package com.lucfiere.resolver
 
-import com.lucfiere.resolver.appender.StandardCriteriaResolver
-import com.lucfiere.resolver.appender.StandardDaoResolver
-import com.lucfiere.resolver.appender.StandardMapperResolver
-import com.lucfiere.resolver.appender.StandardMapperXMLResolver
-import com.lucfiere.resolver.appender.StandardPojoResolver
+import com.lucfiere.resolver.appender.*
 
 class ResolverFactory {
 
     static List<Resolver> defaultResolvers() {
         [
                 new StandardPojoResolver(),
+                new StandardDaoImplResolver(),
                 new StandardDaoResolver(),
                 new StandardMapperResolver(),
                 new StandardCriteriaResolver(),
+                new StandardServiceResolver(),
+                new StandardServiceImplResolver(),
                 new StandardMapperXMLResolver()
         ]
     }
