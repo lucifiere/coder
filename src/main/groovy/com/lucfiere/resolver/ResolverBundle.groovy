@@ -22,7 +22,7 @@ class ResolverBundle {
     }
 
     ResolverBundle() {
-        this.resolvers = ResolverFactory.defaultResolvers()
+        this.resolvers = ResolverFactory.defaultResolvers
     }
 
     void resolve(SourceCodeBundle bundle, BootstrapContext context) {

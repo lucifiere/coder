@@ -10,6 +10,7 @@ import com.lucfiere.resolver.ResolverBundle
 import com.lucfiere.wrapper.TableWrapper
 import com.lucfiere.wrapper.re.ReLexer
 import com.lucfiere.wrapper.re.SimpleLexer
+import org.apache.commons.collections4.CollectionUtils
 import org.apache.commons.lang3.StringUtils
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
@@ -42,13 +43,14 @@ class Bootstrap {
         this
     }
 
-    Bootstrap resovers(List<Resolver> resolvers) {
+    Bootstrap resolvers(List<Resolver> resolvers) {
+        assert CollectionUtils.isNotEmpty(resolvers)
         this.resolvers.replace(resolvers)
         this
     }
 
-    Bootstrap resover(Resolver resolvers) {
-        this.resolvers.add(resolvers)
+    Bootstrap resolver(Resolver resolver) {
+        this.resolvers.add(resolver)
         this
     }
 
