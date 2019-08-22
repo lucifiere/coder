@@ -16,6 +16,7 @@ dependencies {
     compile group: 'org.apache.logging.log4j', name: 'log4j-core', version: '2.6.2'
     compile group: 'log4j', name: 'log4j', version: '1.2.17'
     compile group: 'org.apache.logging.log4j', name: 'log4j-slf4j-impl', version: '2.11.0'
+    compile group: 'com.alibaba', name: 'QLExpress', version: '3.2.0'
 
     compile 'org.codehaus.groovy:groovy-all:2.3.11'
     compile group: 'io.debezium', name: 'debezium-ddl-parser', version: '0.9.0.Alpha2'

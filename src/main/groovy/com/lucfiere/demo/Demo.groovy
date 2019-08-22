@@ -12,9 +12,8 @@ class Demo {
         BootstrapContext context = new BootstrapContext.Builder()
                 .setDdlPath(Cons.INPUT_PATH)
                 .setTargetPath(Cons.OUT_PATH)
-                .setTablePrefix("themis_")
                 .create()
-        bootstrap.resolvers(ResolverFactory.damaiResolvers)
+        bootstrap.resolvers(ResolverFactory.defaultResolvers)
         bootstrap.execute(context)
     }
 

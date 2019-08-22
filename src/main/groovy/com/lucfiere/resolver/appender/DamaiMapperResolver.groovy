@@ -5,21 +5,25 @@ import com.lucfiere.resolver.type.MapperResolver
 
 import static com.lucfiere.utils.CommonUtils.capitalFirst
 
-class StandardMapperResolver extends BaseAppender implements Appender, MapperResolver {
+/**
+ * 大麦代码风格
+ */
+class DamaiMapperResolver extends BaseAppender implements Appender, MapperResolver {
 
     @Override
     protected String headCode() {
         """
 import java.util.List;
 
+import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
-
 /**
  * Mapper层
  * 
  * @author ${Cons.AUTHOR}
  * @date ${new Date().format("yyyy-MM-dd")}
  */ 
+@Mapper
 public interface ${capitalFirst(entityName)}Mapper {
         """
     }
@@ -37,30 +41,30 @@ public interface ${capitalFirst(entityName)}Mapper {
     List<${capitalFirstEntityName}> select${capitalFirstEntityName}ListByExample(${capitalFirstEntityName} ${entityName}Example);
 
     /**
-     * 根据DO参数查询符合条件的结果列表(分页)
-     *
-     * @param ${entityName} 查询条件
-     * @param pageInfo     分页
-     * @return 结果列表
-     */
-    List<${capitalFirstEntityName}> select${capitalFirstEntityName}ByParamAndPage(@Param("param") ${capitalFirstEntityName} ${entityName}, @Param("pageInfo") PageInfo pageInfo);
-
-    /**
-     * 根据DO参数查询符合条件的结果列表(分页)
-     *
-     * @param ${entityName} 查询条件
-     * @param pageInfo     分页
-     * @return 结果列表
-     */
-    Long select${capitalFirstEntityName}ListPageCount(@Param("param") ${capitalFirstEntityName} ${entityName}, @Param("pageInfo") PageInfo pageInfo);
-
-    /**
      * 根据DO参数查询符合条件的结果列表
      * 
      * @param ${entityName} 查询条件
      * @return 结果列表
      */
     List<${capitalFirstEntityName}> select${capitalFirstEntityName}ListByParam(${capitalFirstEntityName} ${entityName});
+
+/**
+     * 根据DO参数查询符合条件的结果列表(分页)
+     *
+     * @param paperInbound 查询条件
+     * @param pageInfo     分页
+     * @return 结果列表
+     */
+    List<${capitalFirstEntityName}> select${capitalFirstEntityName}ByParamAndPage(@Param("param") ${capitalFirstEntityName}DO paperInbound, @Param("pageInfo") PageInfo pageInfo);
+
+    /**
+     * 根据DO参数查询符合条件的结果列表(分页)
+     *
+     * @param paperInbound 查询条件
+     * @param pageInfo     分页
+     * @return 结果列表
+     */
+    Long select${capitalFirstEntityName}ListPageCount(@Param("param") ${capitalFirstEntityName}DO paperInbound, @Param("pageInfo") Pager pageInfo);
 
     /**
      * 根据ID查询符合条件的结果

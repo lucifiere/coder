@@ -20,12 +20,10 @@ class ResolverFactory {
     static List<Resolver> damaiResolvers =
             [
                     new StandardPojoResolver(),
-                    new StandardDaoImplResolver(),
-                    new StandardDaoResolver(),
-                    new StandardMapperResolver(),
+                    new DamaiMapperResolver(),
                     new StandardCriteriaResolver(),
-                    new StandardServiceResolver(),
-                    new StandardServiceImplResolver(),
+                    new DamaiServiceResolver(),
+                    new DamaiServiceImplResolver(),
                     new StandardMapperXMLResolver()
             ]
 

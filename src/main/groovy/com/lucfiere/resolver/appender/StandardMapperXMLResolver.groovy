@@ -1,6 +1,7 @@
 package com.lucfiere.resolver.appender
 
 import com.lucfiere.resolver.type.MapperXMLResolver
+import org.apache.commons.lang3.StringUtils
 
 import static com.lucfiere.utils.CommonUtils.capitalFirst
 
@@ -100,7 +101,7 @@ class StandardMapperXMLResolver extends BaseAppender implements Appender, Mapper
     <resultMap id="BaseResultMap" type="${capitalFirst(entityName)}">"""
         table.fieldList.each {
             code += """
-        <id column="${it.sqlName}" property="${it.javaName}" jdbcType="${it.fieldType.sqlLiteral.toUpperCase()}"/>"""
+        <id column="${it.sqlName}" property="${it.javaName}" jdbcType="${it.fieldType.jdbcType}"/>"""
         }
         code += """
     </resultMap>
@@ -115,7 +116,9 @@ class StandardMapperXMLResolver extends BaseAppender implements Appender, Mapper
             filed += """
         ${it.sqlName},"""
         }
-        code += filed[0..-2]
+        if (StringUtils.isNoneBlank(filed)) {
+            code += filed[0..-2]
+        }
         code += """
     </sql>
     """
@@ -124,7 +127,9 @@ class StandardMapperXMLResolver extends BaseAppender implements Appender, Mapper
 
     private selectByExampleCode = { ->
         """
-    <select id="selectByExample" resultMap="BaseResultMap" parameterType="${capitalFirst(entityName)}Example">
+    <select id="select${capitalFirst(entityName)}ListByExample" resultMap="BaseResultMap" parameterType="${
+            capitalFirst(entityName)
+        }Example">
         select
         <if test="distinct">
             distinct
@@ -168,7 +173,7 @@ class StandardMapperXMLResolver extends BaseAppender implements Appender, Mapper
         table.fieldList.each {
             code += """
         <if test="${it.javaName} != null">
-            and ${it.sqlName} = #{${it.javaName},jdbcType=${it.fieldType.sqlLiteral.toUpperCase()}}
+            and ${it.sqlName} = #{${it.javaName},jdbcType=${it.fieldType.jdbcType}}
         </if>"""
         }
         code += """
@@ -195,7 +200,7 @@ class StandardMapperXMLResolver extends BaseAppender implements Appender, Mapper
         table.fieldList.each {
             code += """
             <if test="${it.javaName} != null">
-                ${it.sqlName} = #{${it.javaName},jdbcType=${it.fieldType.sqlLiteral.toUpperCase()}}
+                ${it.sqlName} = #{${it.javaName},jdbcType=${it.fieldType.jdbcType}},
             </if>"""
         }
         code += """
@@ -218,11 +223,11 @@ class StandardMapperXMLResolver extends BaseAppender implements Appender, Mapper
         }
         code += """
         </trim>
-        <trim prefix="(" suffix=")" suffixOverrides="," >"""
+        <trim prefix="values (" suffix=")" suffixOverrides=",">"""
         table.fieldList.each {
             code += """
             <if test="${it.javaName} != null" >
-                #{${it.javaName},jdbcType=${it.fieldType.sqlLiteral.toUpperCase()}},
+                #{${it.javaName},jdbcType=${it.fieldType.jdbcType}},
             </if>"""
         }
         code += """
