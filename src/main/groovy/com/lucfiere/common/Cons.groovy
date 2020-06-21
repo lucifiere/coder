@@ -10,8 +10,8 @@ interface Cons {
 
     String AUTHOR = "XD.Wang"
 
-    String OUT_PATH = "/Users/user/Desktop/mo"
+    String OUT_PATH = "/Users/user/Desktop/codes"
 
-    String INPUT_PATH = "/Users/user/Desktop/xx.sql"
+    String INPUT_PATH = "/Users/user/Desktop/ddl.sql"
 
 }
